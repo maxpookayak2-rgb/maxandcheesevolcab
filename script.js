@@ -1,4 +1,4 @@
-// ฐานข้อมูลคำศัพท์แยกตามหมวดหมู่ (แยก Phrasal Verbs ออกเป็น off, down, over ชัดเจน)
+// ฐานข้อมูลคำศัพท์แยกตามหมวดหมู่
 const categories = {
     unit3: [
         { en: "Transport", th: "ยานพาหนะ / การขนส่ง" },
@@ -408,7 +408,6 @@ const allData = [
 let currentQueue = [];
 let currentCard = null;
 
-// แสดงจำนวนคำในหน้าแรก
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('count-unit3').innerText = `${categories.unit3.length} คำ`;
     document.getElementById('count-unit4').innerText = `${categories.unit4.length} คำ`;
@@ -427,7 +426,6 @@ function startCategory(catKey) {
         currentQueue = [...categories[catKey]];
     }
     
-    // สลับตำแหน่งการเริ่มต้นในเซ็ตแบบสุ่ม
     currentQueue.sort(() => Math.random() - 0.5);
 
     document.getElementById('selection-screen').style.display = 'none';
@@ -457,10 +455,19 @@ function nextCard() {
     currentCard = currentQueue[0];
 
     const cardElement = document.getElementById('card');
+    
+    // บังคับปิดอนิเมชันชั่วคราว เพื่อพลิกกลับด้านหน้าแบบทันทีไม่ให้เห็นตอนสลับการ์ด
+    cardElement.classList.add('no-transition');
     cardElement.classList.remove('is-flipped');
-
+    
+    // อัปเดตข้อความข้างใน
     document.getElementById('front-word').innerText = currentCard.en;
     document.getElementById('back-word').innerText = currentCard.th;
+
+    // คืนค่าอนิเมชันกลับมาหลังจากเบราว์เซอร์เรนเดอร์เสร็จ
+    setTimeout(() => {
+        cardElement.classList.remove('no-transition');
+    }, 50);
 }
 
 function toggleFlip() {
@@ -472,7 +479,6 @@ function answerCard(isCorrect) {
     const answeredCard = currentQueue.shift();
 
     if (!isCorrect) {
-        // สุ่มแทรกคำที่ตอบผิดกลับเข้าไปใหม่ในคิว
         const randomIndex = Math.floor(Math.random() * (currentQueue.length + 1));
         currentQueue.splice(randomIndex, 0, answeredCard);
     }
