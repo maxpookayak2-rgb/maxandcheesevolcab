@@ -453,28 +453,25 @@ function nextCard() {
 
     currentCard = currentQueue[0];
 
-    const cardElement = document.getElementById('card');
-    
-    // ปิดอนิเมชันทันที และบังคับลบคลาสพลิกออก
-    cardElement.style.transition = 'none';
-    cardElement.classList.remove('is-flipped');
-    
-    // บังคับให้เบราว์เซอร์คำนวณเลย์เอาต์ใหม่ทันที (Force Reflow) เพื่อตัดการหมุนออก 100%
-    void cardElement.offsetWidth;
-    
-    // เปลี่ยนคำศัพท์ใหม่
+    // เปลี่ยนมาใช้วิธีเปิด/ปิดการแสดงผลหน้าหน้า (Front) และหน้าหลัง (Back) แทนการใช้ 3D Transform หมวดอนิเมชัน
+    document.getElementById('card-front').style.display = 'flex';
+    document.getElementById('card-back').style.display = 'none';
+
     document.getElementById('front-word').innerText = currentCard.en;
     document.getElementById('back-word').innerText = currentCard.th;
-
-    // เปิดอนิเมชันการพลิกคืนเฉพาะเวลาผู้ใช้คลิกพลิกการ์ดเอง
-    setTimeout(() => {
-        cardElement.style.transition = 'transform 0.4s ease';
-    }, 50);
 }
 
 function toggleFlip() {
-    const cardElement = document.getElementById('card');
-    cardElement.classList.toggle('is-flipped');
+    const frontFace = document.getElementById('card-front');
+    const backFace = document.getElementById('card-back');
+
+    if (frontFace.style.display === 'none') {
+        frontFace.style.display = 'flex';
+        backFace.style.display = 'none';
+    } else {
+        frontFace.style.display = 'none';
+        backFace.style.display = 'flex';
+    }
 }
 
 function answerCard(isCorrect) {
