@@ -455,18 +455,21 @@ function nextCard() {
 
     const cardElement = document.getElementById('card');
     
-    // ปิดอนิเมชันชั่วคราว และบังคับลบสถานะการพลิก (is-flipped) ออกทันที เพื่อไม่ให้หน้าเฉลยค้างหรือหมุนเวลาเปลี่ยนคำ
+    // ปิดอนิเมชันทันที และบังคับลบคลาสพลิกออก
     cardElement.style.transition = 'none';
     cardElement.classList.remove('is-flipped');
     
-    // อัปเดตข้อความหน้าถัดไป
+    // บังคับให้เบราว์เซอร์คำนวณเลย์เอาต์ใหม่ทันที (Force Reflow) เพื่อตัดการหมุนออก 100%
+    void cardElement.offsetWidth;
+    
+    // เปลี่ยนคำศัพท์ใหม่
     document.getElementById('front-word').innerText = currentCard.en;
     document.getElementById('back-word').innerText = currentCard.th;
 
-    // บังคับเบราว์เซอร์รีเซ็ตเลย์आउट แล้วค่อยเปิดอนิเมชันคืนสำหรับการกดคลิกพลิกการ์ดปกติ
+    // เปิดอนิเมชันการพลิกคืนเฉพาะเวลาผู้ใช้คลิกพลิกการ์ดเอง
     setTimeout(() => {
         cardElement.style.transition = 'transform 0.4s ease';
-    }, 20);
+    }, 50);
 }
 
 function toggleFlip() {
