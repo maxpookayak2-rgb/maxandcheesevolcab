@@ -456,17 +456,17 @@ function nextCard() {
 
     const cardElement = document.getElementById('card');
     
-    // บังคับปิดอนิเมชันชั่วคราว เพื่อพลิกกลับด้านหน้าแบบทันทีไม่ให้เห็นตอนสลับการ์ด
-    cardElement.classList.add('no-transition');
+    // บังคับพลิกกลับด้านหน้าทันทีแบบไม่มีอนิเมชันหมุนกวนใจ
+    cardElement.style.transition = 'none';
     cardElement.classList.remove('is-flipped');
     
-    // อัปเดตข้อความข้างใน
+    // อัปเดตคำศัพท์หน้าถัดไป
     document.getElementById('front-word').innerText = currentCard.en;
     document.getElementById('back-word').innerText = currentCard.th;
 
-    // คืนค่าอนิเมชันกลับมาหลังจากเบราว์เซอร์เรนเดอร์เสร็จ
+    // คืนค่าอนิเมชันให้กลับมาปกติเฉพาะตอนกดคลิกพลิกการ์ดเอง
     setTimeout(() => {
-        cardElement.classList.remove('no-transition');
+        cardElement.style.transition = 'transform 0.4s ease';
     }, 50);
 }
 
