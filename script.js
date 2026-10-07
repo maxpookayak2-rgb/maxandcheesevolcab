@@ -394,7 +394,6 @@ const categories = {
     ]
 };
 
-// รวมคำศัพท์ทั้งหมดสำหรับโหมดลุยทั้งหมด
 const allData = [
     ...categories.unit3, 
     ...categories.unit4, 
@@ -456,18 +455,18 @@ function nextCard() {
 
     const cardElement = document.getElementById('card');
     
-    // บังคับพลิกกลับด้านหน้าทันทีแบบไม่มีอนิเมชันหมุนกวนใจ
+    // ปิดอนิเมชันชั่วคราว และบังคับลบสถานะการพลิก (is-flipped) ออกทันที เพื่อไม่ให้หน้าเฉลยค้างหรือหมุนเวลาเปลี่ยนคำ
     cardElement.style.transition = 'none';
     cardElement.classList.remove('is-flipped');
     
-    // อัปเดตคำศัพท์หน้าถัดไป
+    // อัปเดตข้อความหน้าถัดไป
     document.getElementById('front-word').innerText = currentCard.en;
     document.getElementById('back-word').innerText = currentCard.th;
 
-    // คืนค่าอนิเมชันให้กลับมาปกติเฉพาะตอนกดคลิกพลิกการ์ดเอง
+    // บังคับเบราว์เซอร์รีเซ็ตเลย์आउट แล้วค่อยเปิดอนิเมชันคืนสำหรับการกดคลิกพลิกการ์ดปกติ
     setTimeout(() => {
         cardElement.style.transition = 'transform 0.4s ease';
-    }, 50);
+    }, 20);
 }
 
 function toggleFlip() {
