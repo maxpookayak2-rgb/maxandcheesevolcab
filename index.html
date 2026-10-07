@@ -10,24 +10,40 @@
 
 <div class="container">
     <h1>Maxandcheese Flashcard Website 3~3</h1>
-    <div class="subtitle" id="subtitle">เลือกเซ็ตคำศัพท์ที่คุณต้องการฝึกฝน</div>
+    <div class="subtitle" id="subtitle">เลือกหมวดหมู่คำศัพท์ที่คุณต้องการฝึกฝน</div>
 
-    <!-- หน้าเลือกเซ็ต -->
+    <!-- หน้าเลือกหมวดหมู่ -->
     <div id="selection-screen" class="set-selection">
-        <button class="btn-set" onclick="startSet(1)">
-            <span>เซ็ตที่ 1: กินเอาเป็น</span>
-            <span id="count-1" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
+        <button class="btn-set" onclick="startCategory('unit3')">
+            <span>🚌 Unit 3: Transportation</span>
+            <span id="count-unit3" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
         </button>
-        <button class="btn-set" onclick="startSet(2)">
-            <span>เซ็ตที่ 2: กินเอาอยู่</span>
-            <span id="count-2" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
+        <button class="btn-set" onclick="startCategory('unit4')">
+            <span>🏫 Unit 4: School</span>
+            <span id="count-unit4" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
         </button>
-        <button class="btn-set" onclick="startSet(3)">
-            <span>เซ็ตที่ 3: กินเอาตาย</span>
-            <span id="count-3" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
+        <button class="btn-set" onclick="startCategory('unit5')">
+            <span>🐉 Unit 5: Mythical Creature</span>
+            <span id="count-unit5" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
         </button>
-        <button class="btn-set" onclick="startSet('all')" style="background-color: #e0e7ff; border-color: #c7d2fe; color: var(--primary);">
-            <span>เล่นรวมม</span>
+        <button class="btn-set" onclick="startCategory('sheet')">
+            <span>📄 Vocab on sheet</span>
+            <span id="count-sheet" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
+        </button>
+        <button class="btn-set" onclick="startCategory('phrasalOff')">
+            <span>⚡ Phrasal Verbs (off)</span>
+            <span id="count-phrasalOff" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
+        </button>
+        <button class="btn-set" onclick="startCategory('phrasalDown')">
+            <span>⚡ Phrasal Verbs (down)</span>
+            <span id="count-phrasalDown" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
+        </button>
+        <button class="btn-set" onclick="startCategory('phrasalOver')">
+            <span>⚡ Phrasal Verbs (over)</span>
+            <span id="count-phrasalOver" style="font-size: 0.85rem; color: #64748b;">กำลังโหลด...</span>
+        </button>
+        <button class="btn-set" onclick="startCategory('all')" style="background-color: #e0e7ff; border-color: #c7d2fe; color: var(--primary);">
+            <span>🚀 ลุยทั้งหมด (ทุกหมวดหมู่)</span>
             <span id="count-all" style="font-size: 0.85rem; font-weight: bold;">ทั้งหมด</span>
         </button>
     </div>
@@ -35,7 +51,7 @@
     <!-- หน้าเล่น Flashcard -->
     <div id="flashcard-app" style="display: none; width: 100%;">
         <div class="menu-bar">
-            <button class="btn-back" onclick="goHome()">⬅ เลือกเซ็ตอื่น</button>
+            <button class="btn-back" onclick="goHome()">⬅ เลือกหมวดหมู่</button>
             <div id="stats" class="stats" style="margin: 0;">คำที่เหลือ: 0</div>
         </div>
 
@@ -61,8 +77,8 @@
     <!-- หน้าแสดงผลเมื่อเคลียร์ครบ -->
     <div id="completion-screen" class="completion-screen" style="display: none;">
         <h2>🎉 ยอดเยี่ยมมาก!</h2>
-        <p>คุณฝึกฝนคำศัพท์เซ็ตนี้จนครบทุกคำเรียบร้อยแล้ว</p>
-        <button class="btn-restart" onclick="goHome()">กลับไปเลือกเซ็ตอื่น</button>
+        <p>คุณฝึกฝนคำศัพท์หมวดนี้จนครบทุกคำเรียบร้อยแล้ว</p>
+        <button class="btn-restart" onclick="goHome()">กลับไปเลือกหมวดหมู่</button>
     </div>
 </div>
 
