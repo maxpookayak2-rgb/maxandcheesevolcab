@@ -107,6 +107,11 @@ h1 {
     transform: rotateY(180deg);
 }
 
+/* ปิดอนิเมชันชั่วคราวตอนสลับคำ เพื่อกันบัตรกระพริบ */
+.card.no-transition {
+    transition: none !important;
+}
+
 .card-face {
     position: absolute;
     width: 100%;
